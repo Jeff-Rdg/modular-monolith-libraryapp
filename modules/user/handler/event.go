@@ -5,10 +5,10 @@ import (
 )
 
 type UserEventHandler struct {
-	repo usecase.CreateUserInterface
+	repo usecase.CreateUser
 }
 
-func NewUserEventHandler(uc usecase.CreateUserInterface) *UserEventHandler {
+func NewUserEventHandler(uc usecase.CreateUser) *UserEventHandler {
 	return &UserEventHandler{uc}
 }
 

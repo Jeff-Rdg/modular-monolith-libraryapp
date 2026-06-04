@@ -13,19 +13,19 @@ type CreateUserInput struct {
 	CPF      string `json:"cpf"`
 }
 
-type CreateUserInterface interface {
+type CreateUser interface {
 	Execute(ctx context.Context, input CreateUserInput) error
 }
 
-type CreateUserUseCase struct {
+type createUserUseCase struct {
 	repo port.UserRepository
 }
 
-func NewCreateUserUseCase(repo port.UserRepository) *CreateUserUseCase {
-	return &CreateUserUseCase{repo}
+func NewCreateUserUseCase(repo port.UserRepository) CreateUser {
+	return &createUserUseCase{repo}
 }
 
-func (c *CreateUserUseCase) Execute(ctx context.Context, input CreateUserInput) error {
+func (c *createUserUseCase) Execute(ctx context.Context, input CreateUserInput) error {
 	err := c.repo.Save(ctx, domain.User{
 		Name:     input.Name,
 		Email:    input.Email,
