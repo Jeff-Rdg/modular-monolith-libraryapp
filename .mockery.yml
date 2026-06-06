@@ -1,0 +1,33 @@
+all: false
+dir: '{{.InterfaceDir}}'
+filename: 'mock_{{.InterfaceName | snakecase}}.go'
+force-file-write: true
+formatter: goimports
+formatter-options:
+  goimports:
+    all-errors: false
+    comments: true
+    format-only: true
+    fragment: false
+    local-prefix: ""
+    tab-indent: true
+    tab-width: 8
+generate: true
+include-auto-generated: false
+log-level: info
+structname: 'Mock{{.InterfaceName}}'
+pkgname: '{{.SrcPackageName}}'
+recursive: false
+require-template-schema-exists: true
+template: testify
+template-schema: '{{.Template}}.schema.json'
+packages:
+  modular-monolith-libraryApp/modules/author/port:
+    interfaces:
+      AuthorRepository:
+  modular-monolith-libraryApp/modules/user/port:
+    interfaces:
+      UserRepository:
+  modular-monolith-libraryApp/shared/port:
+    interfaces:
+      EventBus:
